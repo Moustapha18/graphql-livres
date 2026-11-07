@@ -1,0 +1,308 @@
+{
+ "info": {
+  "name": "GraphQL Livres",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "item": [
+  {
+   "name": "1. Tous les livres",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "{ books { id title author { name } } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "2. Un livre par id",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "{ book(id: \"1\") { id title author { name } } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "3. Tous les auteurs",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "{ authors { id name books { title } } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "4. Un auteur par id",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "{ author(id: \"1\") { name books { title } } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "5. addBook",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { addBook(title: \"Nouveau livre\", authorId: \"2\") { id title author { name } } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "6. updateBook",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { updateBook(id: \"1\", title: \"Titre modifié\") { id title } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "7. deleteBook",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { deleteBook(id: \"3\") }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "8. Erreur : auteur inexistant",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { addBook(title: \"Test\", authorId: \"99\") { id } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "9. Erreur : livre inexistant",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { updateBook(id: \"99\", title: \"X\") { id } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  },
+  {
+   "name": "10. Erreur : titre vide",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation { addBook(title: \"\", authorId: \"1\") { id } }",
+      "variables": ""
+     }
+    },
+    "url": {
+     "raw": "http://localhost:8080/graphql",
+     "protocol": "http",
+     "host": [
+      "localhost"
+     ],
+     "port": "8080",
+     "path": [
+      "graphql"
+     ]
+    }
+   }
+  }
+ ]
+}
